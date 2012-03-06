@@ -1,3 +1,4 @@
+
 SenchaCouch v0.1
 ================
 
@@ -12,23 +13,26 @@ CSS, HTML, images, etc.).
 Sencha Touch's base classes are similar enough where it might work out of the box, or with minor
 changes.
 
+
 Running The Specs
 -----------------
 
-The specs are run using Jasmine, and hosted from a CouchDB server using CouchApp.  This is the  excepted deployment configuration of an application using SenchaCouch.
+The specs are run using Jasmine, and hosted from a CouchDB server using CouchApp.  This is the  excepted deployment configuration of an application using SenchaCouch, and serves as an example of how to build your own application.
 
 1. Install CouchDB, create a database called `sencha_couch_test`.  Install CouchApp.  If you did not install CouchDB to localhost, modify `test/.couchapprc` to point to the correct database.  These instructions assume localhost.
 
-1. Due to license restrictions, Ext JS cannot be included as part of this project, so [download](http://www.sencha.com/products/extjs/download) your own distribution and copy the ext-all-dev.js file into the `test/_attachments/lib/extjs` directory.
+1. Due to license restrictions, Ext JS cannot be included as part of this project. You should [download](http://www.sencha.com/products/extjs/download) your own distribution and copy the ext-all-dev.js file into the `test/_attachments/lib/extjs` directory.
 
 1. Change to the `test` directory and run `couchapp push local` to copy the Jasmine specs to CouchDB.
 
 1. Browse to `http://localhost:5984/sencha_couch_test/_design/test/run.html`, and the specs will launch immediately.
 
+
 Acknowledgements
 ----------------
-- Shaun Avery
-- Guy on Sencha Forum
+- I was inspired to develop this project after watching Shane Avery's [fantastic video tutorials](http://averydc.com/ee/index.php/blog/couchdb_extjs4_a_winning_combination) on combining Ext JS and CouchDB.  Thanks, Shane!
+- Thanks also to Clint Harris, who posted some [very helpful code](http://www.sencha.com/forum/showthread.php?152106-Model.save%28%29-breaks-if-server-doesn-t-respond-with-updated-record-data) on the Sencha Forum.
+
 
 License
 -------

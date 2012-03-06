@@ -36,6 +36,8 @@ describe("CouchDB Operations", function() {
     }
   });
   
+  var PAUSE = 500;
+  
   var store = new Ext.data.Store({
     model: 'Person'
   });
@@ -49,19 +51,18 @@ describe("CouchDB Operations", function() {
   });
   
   it('can save and load a new Model object', function() {
-    // load a non-exiting person object
-    var person = new Person({
-      name: 'Ralph',
-      age: 30
-    });
-  
+    var id;
+    
+    var person = new Person({ name: 'Ralph', age: 30 });
+    id = person.getId();
+    expect(id).toBeFalsy();
+
     runs(function() {
       person.save();
     });
     
-    waits(500);
+    waits(PAUSE);
   
-    var id;
     runs(function() {
       id = person.getId();
       expect(id).toBeDefined();
@@ -78,11 +79,61 @@ describe("CouchDB Operations", function() {
       });
     });
     
-    waits(500);
+    waits(PAUSE);
   
     runs(function() {
       expect(person).toBeDefined();
       expect(person.getId()).toEqual(id);
     });
+  });
+  
+  it('can delete a Model object', function() {
+    var id;
+    var person = new Person({ name: 'Ralph', age: 30 });
+    
+    runs(function() {
+      person.save();
+    });
+    
+    waits(PAUSE);
+    
+    id = person.getId();
+
+    runs(function() {
+      Person.load(id, {
+        failure: function(record, operation) {
+          person = null;
+        },
+        success: function(record, operation) {
+          person = record;
+        }
+      });
+    });
+    
+    waits(PAUSE);
+    
+    runs(function() {
+      person.destroy();
+    });
+    
+    waits(PAUSE);
+    
+    runs(function() {
+      Person.load(id, {
+        failure: function(record, operation) {
+          person = null;
+        },
+        success: function(record, operation) {
+          person = record; // this is the expected path; record should be undefined
+        }
+      });
+    });
+    
+    waits(PAUSE);
+    
+    runs(function() {
+      expect(person).toBeUndefined();
+    });
+
   });
 });
