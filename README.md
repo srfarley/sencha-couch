@@ -6,7 +6,7 @@ JS](http://www.sencha.com/products/extjs/) web applications from an [Apache
 CouchDB](http://couchdb.apache.org/) server. CouchDB serves both static assets (JavaScript, CSS,
 HTML, images, etc.) and handles all RESTful data operations, so no other server-side resources are
 necessary. This is ideal for web applications that need reliable online storage for JSON objects.
-[CouchApp](couchapp.org) can be used to facilitate deployment of the application to CouchDB servers.
+[CouchApp](http://couchapp.org) can be used to facilitate deployment of the application to CouchDB servers.
 
 **NOTE**: SenchaCouch has been tested with Ext JS 4.0.7. Testing with [Sencha
 Touch](http://www.sencha.com/products/touch/) is forthcoming. Sencha Touch's data classes are
