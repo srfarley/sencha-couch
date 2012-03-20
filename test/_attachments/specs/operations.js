@@ -54,6 +54,8 @@ describe("CRUD Operations", function() {
     runs(function() {
       id = person.getId();
       expect(id).toBeDefined();
+      expect(person.get('name')).toBe('Ralph');
+      expect(person.get('age')).toBe(30);
     });
     
     operates(function() {
