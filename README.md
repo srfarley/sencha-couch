@@ -1,5 +1,5 @@
-SenchaCouch v0.1
-================
+SenchaCouch
+===========
 
 SenchaCouch is a small JavaScript library containing the classes necessary for hosting [Sencha Ext
 JS](http://www.sencha.com/products/extjs/) web applications from an [Apache
