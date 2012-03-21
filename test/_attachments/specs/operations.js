@@ -42,6 +42,7 @@ describe("CRUD Operations", function() {
   
   it('can create and load a new Model object', function() {
     var id;
+    var rev;
     
     var person = new Person({ name: 'Ralph', age: 30 });
     id = person.getId();
@@ -53,7 +54,10 @@ describe("CRUD Operations", function() {
       
     runs(function() {
       id = person.getId();
+      rev = person.get('_rev');
       expect(id).toBeDefined();
+      expect(person.get('_id')).toBe(id);
+      expect(rev).toBeDefined();
       expect(person.get('name')).toBe('Ralph');
       expect(person.get('age')).toBe(30);
     });
@@ -70,6 +74,8 @@ describe("CRUD Operations", function() {
     runs(function() {
       expect(person).toBeDefined();
       expect(person.getId()).toBe(id);
+      expect(person.get('_id')).toBe(id);
+      expect(person.get('_rev')).toBe(rev);
       expect(person.get('name')).toBe('Ralph');
       expect(person.get('age')).toBe(30);
     });
@@ -77,6 +83,7 @@ describe("CRUD Operations", function() {
   
   it('can update an existing Model object', function() {
     var id;
+    var rev;
     var person = new Person({ name: 'Ralph', age: 31 });
     
     operates(function() {
@@ -85,6 +92,7 @@ describe("CRUD Operations", function() {
     
     operates(function() {
       id = person.getId();
+      rev = person.get('_rev');
       person = null;
       Person.load(id, {
         success: function(record, operation) {
@@ -111,6 +119,8 @@ describe("CRUD Operations", function() {
     runs(function() {
       expect(person).toBeDefined();
       expect(person.getId()).toBe(id);
+      expect(person.get('_rev')).toBeDefined();
+      expect(person.get('_rev')).toNotBe(rev);
       expect(person.get('name')).toBe('Fred');
       expect(person.get('age')).toBe(21);
     });
